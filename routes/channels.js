@@ -96,4 +96,15 @@ router.get('/channels/:id/pins', async (req, res) => {
 router.put('/channels/:id/pins/:message_id', async (req, res) => {
     return utils.wrapRequest(req.rest, 'channel', 'addChannelPinnedMessage', res, req.params.id, req.params.message_id);
 });
+// Delete Pinned Channel Message
+router.delete('/channels/:id/pins/:message_id', async (req, res) => {
+    return utils.wrapRequest(req.rest, 'channel', 'removeChannelPinnedMessage', res, req.params.id, req.params.message_id);
+});
+// Group DM Add Recipient
+router.put('/channels/:id/recipients/:user_id', async (req, res) => {
+    return utils.wrapRequest(req.rest, 'channel', 'addDmChannelRecipient', res, req.params.id, req.params.user_id);
+});
+router.delete('/channels/:id/recipients/:user_id', async (req, res) => {
+    return utils.wrapRequest(req.rest, 'channel', 'removeDmChannelRecipient', res, req.params.id, req.params.user_id);
+});
 module.exports = router;
