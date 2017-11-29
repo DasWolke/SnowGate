@@ -5,7 +5,7 @@ router.get('/users/:id', async (req, res) => {
     return utils.wrapRequest(req.rest, 'user', 'getUser', res, req.params.id);
 });
 // Modify Current User
-router.patch('/users/@me', async (req,res) => {
+router.patch('/users/@me', async (req, res) => {
     return utils.wrapRequest(req.rest, 'user', 'updateSelf', res, req.body);
 });
 // Get User Guilds
@@ -22,6 +22,7 @@ router.get('/users/@me/channels', async (req, res) => {
 });
 // Create DM Channel
 router.post('/users/@me/channels', async (req, res) => {
-    return utils.wrapRequest(req.rest, 'user', 'createDirectMessageChannel', res, req.body);
+    return utils.wrapRequest(req.rest, 'user', 'createDirectMessageChannel', res, req.body.recipient_id);
 });
 
+module.exports = router;

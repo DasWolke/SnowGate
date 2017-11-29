@@ -11,5 +11,7 @@ app.use((req, res, next) => {
     next();
 });
 app.use('/api/v7', require('./routes/channels'));
+app.use('/api/v7', require('./routes/users'));
+app.use('/api/v7', require('./routes/voice'));
 app.listen(config.port, config.host);
 console.log(`App started on ${config.host}:${config.port}`);
