@@ -9,7 +9,7 @@ router.get('/guilds/:id', (req, res) => {
     return utils.wrapRequest(req.rest, 'guild', 'getGuild', res, req.params.id);
 });
 // Update guild
-router.patch('/guilds/:id', async (req,res) => {
+router.patch('/guilds/:id', (req, res) => {
     return utils.wrapRequest(req.rest, 'guild', 'updateGuild', res, req.params.id, req.body);
 });
 // Delete guild
@@ -57,7 +57,7 @@ router.delete('/guilds/:id/members/:user_id/roles/:role_id', (req, res) => {
     return utils.wrapRequest(req.rest, 'guild', 'removeGuildMemberRole', res, req.params.id, req.params.id, req.params.user_id, req.params.role_id);
 });
 router.delete('/guilds/:id/members/:user_id', (req, res) => {
-    return utils.wrapRequest(req.rest, 'guild', 'removeGuildMember', res, req.params.id, req.params.id, req.params.user_id, req.body);
+    return utils.wrapRequest(req.rest, 'guild', 'removeGuildMember', res, req.params.id, req.params.id, req.params.user_id);
 });
 
 // Get guild bans
@@ -66,7 +66,7 @@ router.get('/guilds/:id/bans', (req, res) => {
 });
 // Create guild ban
 router.put('/guilds/:id/bans/:user_id', (req, res) => {
-    return utils.wrapRequest(req.rest, 'guild', 'createGuildBan', res, req.params.id, req.params.user_id, req.body);
+    return utils.wrapRequest(req.rest, 'guild', 'createGuildBan', res, req.params.id, req.params.user_id, req.query);
 });
 // Remove guild ban
 router.delete('/guilds/:id/bans/:user_id', (req, res) => {
@@ -101,7 +101,7 @@ router.get('/guilds/:id/prune', (req, res) => {
 });
 // Start guild prune
 router.get('/guild/:id/prune', (req, res) => {
-    return utils.wrapRequest(req.rest, 'guild', 'startGuildPrune', res, req.params.id, req.body);
+    return utils.wrapRequest(req.rest, 'guild', 'startGuildPrune', res, req.params.id, req.query);
 });
 
 // Get guild voice regions
