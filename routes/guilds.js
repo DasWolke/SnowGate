@@ -18,7 +18,7 @@ router.delete('/guilds/:id', (req, res) => {
 })
 // Get guild channels
 router.get('/guilds/:id/channels', (req, res) => {
-  return utils.wrapRequest(req.rest, 'guild', 'getGuildChannels', res)
+  return utils.wrapRequest(req.rest, 'guild', 'getGuildChannels', res, req.params.id)
 })
 // Create guild channel
 router.post('/guilds/:id/channels', (req, res) => {
@@ -141,3 +141,5 @@ router.get('/guild/:id/embed', (req, res) => {
 router.patch('/guilds/:id/embed', (req, res) => {
   return utils.wrapRequest(req.rest, 'guild', 'updateGuildEmbed', res, req.params.id, req.body)
 })
+
+module.exports = router
