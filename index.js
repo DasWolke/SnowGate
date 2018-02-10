@@ -10,8 +10,13 @@ app.use((req, res, next) => {
   req.rest = snowtransfer
   next()
 })
+app.use('/api/v7', require('./routes/bots'))
 app.use('/api/v7', require('./routes/channels'))
+app.use('/api/v7', require('./routes/emojis'))
+app.use('/api/v7', require('./routes/guilds'))
+app.use('/api/v7', require('./routes/invites'))
 app.use('/api/v7', require('./routes/users'))
 app.use('/api/v7', require('./routes/voice'))
+app.use('/api/v7', require('./routes/webhook'))
 app.listen(config.port, config.host)
 console.log(`App started on ${config.host}:${config.port}`)
