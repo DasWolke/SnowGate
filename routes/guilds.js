@@ -99,25 +99,25 @@ router.get('/guilds/:id/prune', (req, res) => {
   return utils.wrapRequest(req.rest, 'guild', 'getGuildPruneCount', res, req.params.id, req.query)
 })
 // Start guild prune
-router.get('/guild/:id/prune', (req, res) => {
+router.get('/guilds/:id/prune', (req, res) => {
   return utils.wrapRequest(req.rest, 'guild', 'startGuildPrune', res, req.params.id, req.query)
 })
 
 // Get guild voice regions
-router.get('/guild/:id/regions', (req, res) => {
+router.get('/guilds/:id/regions', (req, res) => {
   return utils.wrapRequest(req.rest, 'guild', 'getGuildVoiceRegions', res, req.params.id)
 })
 // Get guild invites
-router.get('/guild/:id/invites', (req, res) => {
+router.get('/guilds/:id/invites', (req, res) => {
   return utils.wrapRequest(req.rest, 'guild', 'getGuildInvites', res, req.params.id)
 })
 
 // Get guild integrations
-router.get('/guild/:id/integrations', (req, res) => {
+router.get('/guilds/:id/integrations', (req, res) => {
   return utils.wrapRequest(req.rest, 'guild', 'getGuildIntegrations', res, req.params.id)
 })
 // Create guild integration
-router.post('/guild/:id/integrations', (req, res) => {
+router.post('/guilds/:id/integrations', (req, res) => {
   return utils.wrapRequest(req.rest, 'guild', 'createGuildIntegration', res, req.params.id, req.body)
 })
 // Update guild integration
@@ -134,7 +134,7 @@ router.post('/guilds/:id/integrations/:integration_id', (req, res) => {
 })
 
 // Get guild embed
-router.get('/guild/:id/embed', (req, res) => {
+router.get('/guilds/:id/embed', (req, res) => {
   return utils.wrapRequest(req.rest, 'guild', 'getGuildEmbed', res, req.params.id)
 })
 // Update guild embed
