@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const multer = require('multer')
-const upload = multer({storage: multer.memoryStorage()})
+const upload = multer({ storage: multer.memoryStorage() })
 const utils = require('../utils')
 // Get Channel
 router.get('/channels/:id', async (req, res) => {
@@ -36,7 +36,7 @@ router.post('/channels/:id/messages', upload.single('file'), async (req, res) =>
       }
     }
   } catch (e) {
-    return res.status(400).json({code: 80000, message: 'Failed to parse body', error: e.toString()})
+    return res.status(400).json({ code: 80000, message: 'Failed to parse body', error: e.toString() })
   }
   return utils.wrapRequest(req.rest, 'channel', 'createMessage', res, req.params.id, body)
 })

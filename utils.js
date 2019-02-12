@@ -15,4 +15,4 @@ const wrapRequest = async (snowtransfer, resource, method, res, ...args) => {
   }
 }
 
-module.exports = {wrapRequest}
+module.exports = { wrapRequest }
