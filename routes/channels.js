@@ -20,7 +20,7 @@ router.get('/channels/:id/messages', async (req, res) => {
 })
 // Get Channel Message
 router.get('/channels/:id/messages/:message_id', async (req, res) => {
-  return utils.wrapRequest(req.rest, 'channel', 'getChannelMessages', res, req.params.id, req.params.message_id)
+  return utils.wrapRequest(req.rest, 'channel', 'getChannelMessage', res, req.params.id, req.params.message_id)
 })
 // Create Message
 router.post('/channels/:id/messages', upload.single('file'), async (req, res) => {
