@@ -50,14 +50,14 @@ router.patch('/guilds/:id/members/@me/nick', (req, res) => {
 })
 // Add guild member role
 router.put('/guilds/:id/members/:user_id/roles/:role_id', (req, res) => {
-  return utils.wrapRequest(req.rest, 'guild', 'addGuildMemberRole', res, req.params.id, req.params.id, req.params.user_id, req.params.role_id)
+  return utils.wrapRequest(req.rest, 'guild', 'addGuildMemberRole', res, req.params.id, req.params.user_id, req.params.role_id)
 })
 // Remove guild member role
 router.delete('/guilds/:id/members/:user_id/roles/:role_id', (req, res) => {
-  return utils.wrapRequest(req.rest, 'guild', 'removeGuildMemberRole', res, req.params.id, req.params.id, req.params.user_id, req.params.role_id)
+  return utils.wrapRequest(req.rest, 'guild', 'removeGuildMemberRole', res, req.params.id, req.params.user_id, req.params.role_id)
 })
 router.delete('/guilds/:id/members/:user_id', (req, res) => {
-  return utils.wrapRequest(req.rest, 'guild', 'removeGuildMember', res, req.params.id, req.params.id, req.params.user_id)
+  return utils.wrapRequest(req.rest, 'guild', 'removeGuildMember', res, req.params.id, req.params.user_id)
 })
 
 // Get guild bans
