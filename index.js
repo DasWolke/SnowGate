@@ -28,6 +28,10 @@ async function proxyAllRequests (req, res) {
     return res.status(status).json(response)
   }
 }
-
 app.all('*', proxyAllRequests)
-app.listen(config.port || 4096)
+
+const port = config.port || 4096
+const host = config.host || '127.0.0.1'
+
+app.listen(port, host)
+console.log(`App started on ${host}:${port}`)
