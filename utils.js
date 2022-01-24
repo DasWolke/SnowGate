@@ -1,18 +1,22 @@
-const wrapRequest = async (snowtransfer, resource, method, res, ...args) => {
-  try {
-    const result = await snowtransfer[resource][method](...args)
-    return res.status(200).json(result)
-  } catch (e) {
-    const status = e.response ? e.response.status : 500
-    const response = {
-      status,
-      error: e.toString()
+function handleReason (req, res, next) {
+  const reason = req.get('x-audit-log-reason')
+  if (reason) {
+    if (req.method === 'GET' || req.path.includes('/bans') || req.path.includes('/prune')) {
+      req.query.reason = reason
+    } else {
+      req.body.reason = reason
     }
-    if (e.response) {
-      Object.assign(response, e.response.data)
-    }
-    return res.status(status).json(response)
   }
+  next()
 }
 
-module.exports = { wrapRequest }
+function handleMultipart (req) {
+  const body = JSON.parse(req.body.payload_json)
+  req.files.forEach((f, i) => {
+    body.files[i].file = f.buffer
+    body.files[i].name = f.originalname
+  })
+  return body
+}
+
+module.exports = { handleReason, handleMultipart }
