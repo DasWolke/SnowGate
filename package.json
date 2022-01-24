@@ -4,6 +4,7 @@
   "description": "A simple rest proxy that handles ratelimits when interacting with the discord api",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
     "posttest": "npm run lint",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
