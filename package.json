@@ -12,10 +12,9 @@
   "author": "wolke <wolke@weeb.sh>",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.19.1",
     "express": "^4.17.2",
     "multer": "^1.4.4",
-    "snowtransfer": "^0.3.3"
+    "snowtransfer": "^0.3.4"
   },
   "devDependencies": {
     "eslint": "^8.7.0",

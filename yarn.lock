@@ -121,7 +121,7 @@
   "resolved" "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
   "version" "1.0.2"
 
-"body-parser@^1.19.1", "body-parser@1.19.1":
+"body-parser@1.19.1":
   "integrity" "sha512-8ljfQi5eBk8EJfECMrgqNGWPEY5jWP+1IzkzkGdFFEwFQZZyaZ21UqdaHktgiMlH0xLHqIFtE/u2OYE5dOtViA=="
   "resolved" "https://registry.npmjs.org/body-parser/-/body-parser-1.19.1.tgz"
   "version" "1.19.1"
@@ -1372,10 +1372,10 @@
     "get-intrinsic" "^1.0.2"
     "object-inspect" "^1.9.0"
 
-"snowtransfer@^0.3.3":
-  "integrity" "sha512-Oh2M2ZyHmEO91PHQjwE96uliek4GPr0AKxb+vn2ePXtDE6fFNKNKE0cphiGHo0d+WbIPZ3UINPgnsRntGDFQ2w=="
-  "resolved" "https://registry.npmjs.org/snowtransfer/-/snowtransfer-0.3.3.tgz"
-  "version" "0.3.3"
+"snowtransfer@^0.3.4":
+  "integrity" "sha512-eWDHaFfUI6c7HQEup9KOIonrz0Gyq5WuZAryNQ09wM/4W6S1f3IvntEAg9oHLqxYj8PVHFohtu16Nw2WDmoEZA=="
+  "resolved" "https://registry.npmjs.org/snowtransfer/-/snowtransfer-0.3.4.tgz"
+  "version" "0.3.4"
   dependencies:
     "centra" "^2.5.0"
     "discord-typings" "9.0.x"
