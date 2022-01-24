@@ -1,6 +1,6 @@
 const express = require('express')
 const multer = require('multer')
-const { SnowTransfer } = require('snowtransfer')
+const { SnowTransfer, Constants } = require('snowtransfer')
 const { handleReason, handleMultipart } = require('./utils')
 const config = require('./config.json')
 const app = express()
@@ -13,7 +13,7 @@ app.use(handleReason)
 
 async function proxyAllRequests (req, res) {
   try {
-    const endpoint = req.path.replace('/api/v9', '')
+    const endpoint = req.path.replace('/api/v' + Constants.REST_API_VERSION, '')
     const method = req.method
     const dataType = req.get('content-type')?.includes('multipart') ? 'multipart' : 'json'
     const data = dataType === 'json' ? (Object.keys(req.query)[0] ? req.query : req.body) : handleMultipart(req)
