@@ -15,7 +15,7 @@ async function proxyAllRequests (req, res) {
   try {
     const endpoint = req.path.replace('/api/v9', '')
     const method = req.method
-    const dataType = req.headers['content-type']?.includes('multipart') ? 'multipart' : 'json'
+    const dataType = req.get('content-type')?.includes('multipart') ? 'multipart' : 'json'
     const data = dataType === 'json' ? (Object.keys(req.query)[0] ? req.query : req.body) : handleMultipart(req)
 
     const result = await Client.requestHandler.request(endpoint, method, dataType, data)

@@ -1,9 +1,10 @@
 function handleReason (req, res, next) {
-  if (req.headers['x-audit-log-reason']) {
+  const reason = req.get('x-audit-log-reason')
+  if (reason) {
     if (req.method === 'GET' || req.path.includes('/bans') || req.path.includes('/prune')) {
-      req.query.reason = req.headers['x-audit-log-reason']
+      req.query.reason = reason
     } else {
-      req.body.reason = req.headers['x-audit-log-reason']
+      req.body.reason = reason
     }
   }
   next()
