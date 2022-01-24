@@ -11,7 +11,7 @@ Now run `npm install` or `yarn` in the cloned directory to install the necessary
 
 
 ## Configuration
-Create a file named `config.json` in the config directory, you can use the `config.example.json` as an example of what the file should contain:
+Create a file named `config.json`, you can use the `config.example.json` as an example of what the file should contain:
 
 ```json
 {

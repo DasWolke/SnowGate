@@ -1,29 +1,33 @@
 const express = require('express')
+const multer = require('multer')
+const { SnowTransfer } = require('snowtransfer')
+const { handleReason, handleMultipart } = require('./utils')
+const config = require('./config.json')
 const app = express()
-const bodyParser = require('body-parser')
-const SnowTransfer = require('snowtransfer')
-const config = require('./config/config.json')
-const snowtransfer = new SnowTransfer(config.token, config.options)
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use((req, res, next) => {
-  req.rest = snowtransfer
-  if (req.headers['X-Audit-Log-Reason']) {
-    if (req.method === 'GET' || req.path.includes('/bans') || req.path.includes('/prune')) {
-      req.query.reason = req.headers['X-Audit-Log-Reason']
-    } else {
-      req.body.reason = req.headers['X-Audit-Log-Reason']
-    }
+const Client = new SnowTransfer(config.token, config.options || {})
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(multer({ storage: multer.memoryStorage() }).any())
+app.use(handleReason)
+
+async function proxyAllRequests (req, res) {
+  try {
+    const endpoint = req.path.replace('/api/v9', '')
+    const method = req.method
+    const dataType = req.headers['content-type']?.includes('multipart') ? 'multipart' : 'json'
+    const data = dataType === 'json' ? (Object.keys(req.query)[0] ? req.query : req.body) : handleMultipart(req)
+
+    const result = await Client.requestHandler.request(endpoint, method, dataType, data)
+    return res.status(200).json(result)
+  } catch (e) {
+    const status = e.response ? e.response.status : 500
+    const response = { status, error: e.toString() }
+    if (e.response) Object.assign(response, e.response.data)
+
+    return res.status(status).json(response)
   }
-  next()
-})
-app.use('/api/v7', require('./routes/bots'))
-app.use('/api/v7', require('./routes/channels'))
-app.use('/api/v7', require('./routes/emojis'))
-app.use('/api/v7', require('./routes/guilds'))
-app.use('/api/v7', require('./routes/invites'))
-app.use('/api/v7', require('./routes/users'))
-app.use('/api/v7', require('./routes/voice'))
-app.use('/api/v7', require('./routes/webhook'))
-app.listen(config.port, config.host)
-console.log(`App started on ${config.host}:${config.port}`)
+}
+
+app.all('*', proxyAllRequests)
+app.listen(config.port || 4096)
